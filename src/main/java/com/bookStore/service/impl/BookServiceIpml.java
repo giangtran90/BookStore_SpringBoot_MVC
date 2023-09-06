@@ -36,4 +36,13 @@ public class BookServiceIpml implements BookService{
 		return books;
 	}
 
+	@Override
+	public Book fetchBookById(Long id) {
+		// TODO Auto-generated method stub
+		BookEntity bookEntity = bookRepository.findById(id).get();
+		Book book = new Book();
+		BeanUtils.copyProperties(bookEntity, book);
+		return book;
+	}
+
 }

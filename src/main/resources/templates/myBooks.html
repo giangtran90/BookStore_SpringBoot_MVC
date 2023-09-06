@@ -29,7 +29,8 @@
 						aria-current="page" href="/">Home</a></li>
 					<li class="nav-item"><a class="nav-link text-white"
 						href="available_books">Available Books</a></li>
-					<li class="nav-item"><a class="nav-link text-white" href="my_books">My Books</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="my_books">My
+							Books</a></li>
 				</ul>
 			</div>
 			<div>
@@ -39,24 +40,31 @@
 		</div>
 	</nav>
 
-	<div class="container my-5 col-sm-6 offset-sm-3" style="border:1px solid black">
-		<h1 class="text-center py-2">New Book Register</h1>
-		<form class="px-4" th:action="@{/save}" method="post">
-			<div class="mb-3">
-				<label for="name" class="form-label">Name</label> 
-				<input type="text" class="form-control" name="name">
-			</div>
-			<div class="mb-3">
-				<label for="author" class="form-label">Author</label> 
-				<input type="text" class="form-control" name="author">
-			</div>
-			<div class="mb-3">
-				<label for="author" class="form-label">Price</label> 
-				<input type="text" class="form-control" name="price">
-			</div>
-			
-			<center class="py-3"><button type="submit" class="btn btn-primary">Submit</button></center>
-		</form>
+	<div class="container my-5">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">No</th>
+					<th scope="col">Name</th>
+					<th scope="col">Author</th>
+					<th scope="col">Price</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<th:block th:each="book, iteration : ${myBooks}">
+					<tr>
+						<th scope="row" th:text="${iteration.count}"></th>
+						<td th:text="${book.name}"></td>
+						<td th:text="${book.author}"></td>
+						<td th:text="${book.price}"></td>
+						<td>
+							<a class="btn btn-primary" href="my_books">Edit</a>
+						</td>
+					</tr>
+				</th:block>
+			</tbody>
+		</table>
 	</div>
 
 	<script

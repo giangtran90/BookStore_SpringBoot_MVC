@@ -10,4 +10,6 @@ public interface BookService {
 
 	List<Book> getAllBook();
 
+	Book fetchBookById(Long id);
+
 }

@@ -29,7 +29,7 @@
 						aria-current="page" href="/">Home</a></li>
 					<li class="nav-item"><a class="nav-link text-white"
 						href="available_books">Available Books</a></li>
-					<li class="nav-item"><a class="nav-link text-white" href="#">My
+					<li class="nav-item"><a class="nav-link text-white" href="my_books">My
 							Books</a></li>
 				</ul>
 			</div>
@@ -58,7 +58,9 @@
 						<td th:text="${book.name}"></td>
 						<td th:text="${book.author}"></td>
 						<td th:text="${book.price}"></td>
-						<td></td>
+						<td>
+							<a class="btn btn-primary" th:href="@{my_list/__${book.id}__}">Add to My Books</a>
+						</td>
 					</tr>
 				</th:block>
 			</tbody>
