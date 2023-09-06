@@ -52,20 +52,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<td></td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-					<td></td>
-				</tr>
+				<th:block th:each="book, iteration : ${books}">
+					<tr>
+						<th scope="row" th:text="${iteration.count}"></th>
+						<td th:text="${book.name}"></td>
+						<td th:text="${book.author}"></td>
+						<td th:text="${book.price}"></td>
+						<td></td>
+					</tr>
+				</th:block>
 			</tbody>
 		</table>
 	</div>

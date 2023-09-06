@@ -1,5 +1,8 @@
 package com.bookStore.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,17 @@ public class BookServiceIpml implements BookService{
 		BookEntity bookEntity = new BookEntity();
 		BeanUtils.copyProperties(book, bookEntity);
 		bookRepository.save(bookEntity);
+	}
+
+	@Override
+	public List<Book> getAllBook() {
+		// TODO Auto-generated method stub
+		List<BookEntity> bookEntities = bookRepository.findAll();
+		List<Book> books = bookEntities.stream()
+				.map(book -> new Book(
+						book.getId(),book.getName(),book.getAuthor(),book.getPrice()))
+				.collect(Collectors.toList());
+		return books;
 	}
 
 }
