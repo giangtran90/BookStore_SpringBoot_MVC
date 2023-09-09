@@ -10,6 +10,8 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
 
 <title>Book Store</title>
 </head>
@@ -29,8 +31,8 @@
 						aria-current="page" href="/">Home</a></li>
 					<li class="nav-item"><a class="nav-link text-white"
 						href="available_books">Available Books</a></li>
-					<li class="nav-item"><a class="nav-link text-white" href="my_books">My
-							Books</a></li>
+					<li class="nav-item"><a class="nav-link text-white"
+						href="my_books">My Books</a></li>
 				</ul>
 			</div>
 			<div>
@@ -48,7 +50,7 @@
 					<th scope="col">Name</th>
 					<th scope="col">Author</th>
 					<th scope="col">Price</th>
-					<th scope="col">Action</th>
+					<th scope="col" class="text-center">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -58,8 +60,10 @@
 						<td th:text="${book.name}"></td>
 						<td th:text="${book.author}"></td>
 						<td th:text="${book.price}"></td>
-						<td>
-							<a class="btn btn-primary" href="my_books">Edit</a>
+						<td class="text-center">
+							<button style="color: green; border: none; background: none" th:onclick="|detail(${book.id})|"><i class="fa-solid fa-book"></i></button>
+							<a style="color: blue" th:href="@{edit_book/__${book.id}__}"><i class="fa-regular fa-pen-to-square mx-2"></i></a>
+							<a style="color: red" th:href="@{delete_book/__${book.id}__}"><i class="fa-solid fa-trash"></i></a> 
 						</td>
 					</tr>
 				</th:block>
