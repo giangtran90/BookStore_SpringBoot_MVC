@@ -44,5 +44,4 @@ public class BookServiceIpml implements BookService{
 		BeanUtils.copyProperties(bookEntity, book);
 		return book;
 	}
-
 }

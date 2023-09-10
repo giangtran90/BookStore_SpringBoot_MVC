@@ -10,8 +10,6 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
 
 <title>Book Store</title>
 </head>
@@ -28,46 +26,38 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link text-white active"
-						aria-current="page" href="/">Home</a></li>
+						aria-current="page" href="http://localhost:1001/">Home</a></li>
 					<li class="nav-item"><a class="nav-link text-white"
-						href="available_books">Available Books</a></li>
-					<li class="nav-item"><a class="nav-link text-white" href="my_books">My
-							Books</a></li>
+						href="http://localhost:1001/available_books">Available Books</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="my_books">My Books</a></li>
 				</ul>
 			</div>
 			<div>
-				<a class="nav-link text-white" href="book_register">New Book
+				<a class="nav-link text-white" href="http://localhost:1001/book_register">New Book
 					Register</a>
 			</div>
 		</div>
 	</nav>
 
-	<div class="container my-5">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th scope="col">No</th>
-					<th scope="col">Name</th>
-					<th scope="col">Author</th>
-					<th scope="col">Price</th>
-					<th scope="col">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<th:block th:each="book, iteration : ${books}">
-					<tr>
-						<th scope="row" th:text="${iteration.count}"></th>
-						<td th:text="${book.name}"></td>
-						<td th:text="${book.author}"></td>
-						<td th:text="${book.price}"></td>
-						<td>
-							<a style="color: green; border: none; background: none;" class="btn btn-primary" th:href="@{my_list/__${book.id}__}" ><i class="fa-solid fa-plus"></i></a>
-							<a style="color: blue" th:href="@{edit_book/__${book.id}__}"><i class="fa-regular fa-pen-to-square mx-2"></i></a>
-						</td>
-					</tr>
-				</th:block>
-			</tbody>
-		</table>
+	<div class="container my-5 col-sm-6 offset-sm-3" style="border:1px solid black">
+		<h1 class="text-center py-2">Edit Book Register</h1>
+		<form class="px-4" th:action="@{/update}" method="post" th:object="${book}" novalidate="novalidate">
+			<input type="hidden" th:field="*{id}"/>
+			<div class="mb-3">
+				<label for="name" class="form-label">Name</label> 
+				<input type="text" class="form-control" name="name" th:field="*{name}">
+			</div>
+			<div class="mb-3">
+				<label for="author" class="form-label">Author</label> 
+				<input type="text" class="form-control" name="author" th:field="*{author}">
+			</div>
+			<div class="mb-3">
+				<label for="author" class="form-label">Price</label> 
+				<input type="text" class="form-control" name="price" th:field="*{price}">
+			</div>
+			
+			<center class="py-3"><button type="submit" class="btn btn-primary">Submit</button></center>
+		</form>
 	</div>
 
 	<script
