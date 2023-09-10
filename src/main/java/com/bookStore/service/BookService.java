@@ -12,4 +12,6 @@ public interface BookService {
 
 	Book fetchBookById(Long id);
 
+	void updateBook(Long id, Book book);
+
 }
