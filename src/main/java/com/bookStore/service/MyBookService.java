@@ -10,4 +10,8 @@ public interface MyBookService {
 
 	List<MyBook> fetchAllMyBooks();
 
+	MyBook getBookById(long id);
+
+	void deleteBookById(long id);
+
 }

@@ -36,4 +36,19 @@ public class MyBookServiceImpl implements MyBookService{
 		return myBooks;
 	}
 
+	@Override
+	public MyBook getBookById(long id) {
+		// TODO Auto-generated method stub
+		MyBookEntity myBookEntity = myBookRepository.findById(id).get();
+		MyBook myBook = new MyBook();
+		BeanUtils.copyProperties(myBookEntity, myBook);
+		return myBook;
+	}
+
+	@Override
+	public void deleteBookById(long id) {
+		// TODO Auto-generated method stub
+		myBookRepository.deleteById(id);
+	}
+
 }
