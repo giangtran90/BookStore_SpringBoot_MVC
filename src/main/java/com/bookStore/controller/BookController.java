@@ -2,13 +2,16 @@ package com.bookStore.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,7 +47,11 @@ public class BookController {
 	}
 	
 	@PostMapping("/save")
-	public String addBook(@ModelAttribute Book book) {
+	public String addBook(@Valid @ModelAttribute Book book, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("errors", bindingResult.getAllErrors());
+			return "bookRegister";
+		}
 		bookService.addBook(book);
 		return "redirect:/available_books";
 	}
@@ -77,6 +84,12 @@ public class BookController {
 	@RequestMapping("/update")
 	public String updateBook(@ModelAttribute Book book) {
 		bookService.updateBook(book.getId(), book);
+		return "redirect:/available_books";
+	}
+	
+	@RequestMapping("/delete/{id}")
+	public String deleteBookById(@PathVariable("id") Long id) {
+		bookService.deleteBookById(id);
 		return "redirect:/available_books";
 	}
 }
