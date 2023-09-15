@@ -54,4 +54,10 @@ public class BookServiceIpml implements BookService{
 		bookEntity.setPrice(book.getPrice());
 		bookRepository.save(bookEntity);
 	}
+
+	@Override
+	public void deleteBookById(Long id) {
+		// TODO Auto-generated method stub
+		bookRepository.deleteById(id);
+	}
 }
