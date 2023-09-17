@@ -60,4 +60,15 @@ public class BookServiceIpml implements BookService{
 		// TODO Auto-generated method stub
 		bookRepository.deleteById(id);
 	}
+
+	@Override
+	public List<Book> findAllByName(String keyword) {
+		// TODO Auto-generated method stub
+		List<BookEntity> bookEntities = bookRepository.findAllByName(keyword);
+		List<Book> books = bookEntities.stream()
+				.map(b -> new Book(
+						b.getId(),b.getName(),b.getAuthor(),b.getPrice()))
+				.collect(Collectors.toList());
+		return books;
+	}
 }

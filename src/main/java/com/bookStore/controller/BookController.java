@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookStore.model.Book;
@@ -91,5 +92,13 @@ public class BookController {
 	public String deleteBookById(@PathVariable("id") Long id) {
 		bookService.deleteBookById(id);
 		return "redirect:/available_books";
+	}
+	
+	@GetMapping("/search")
+	public ModelAndView findAllByName(@RequestParam("keyword") String keyword) {
+		ModelAndView modelAndView = new ModelAndView("/bookList");
+		List<Book> books = bookService.findAllByName(keyword);
+		modelAndView.addObject("books", books);
+		return modelAndView;
 	}
 }
